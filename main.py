@@ -17,3 +17,13 @@ TOKEN = read_token()
 if not TOKEN:
     print("Bot token is missing. Please make sure the token.txt file exists.", file=sys.stderr)
     sys.exit(1)
+
+def main():
+    app = Application.builder().token(TOKEN).job_queue(None).build()
+
+    app.add_handler(CommandHandler("start", start))
+
+    app.run_polling()
+
+if __name__ == '__main__':
+    main()
